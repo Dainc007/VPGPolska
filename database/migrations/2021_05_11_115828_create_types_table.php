@@ -19,6 +19,7 @@ class CreateTypesTable extends Migration
             $table->foreignId('game_id')->constrained();
             $table->enum('result', Game::AVAILABLE_RESULTS);
             $table->enum('point', [0,1]);
+            $table->timestamps();
         });
     }
 

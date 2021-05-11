@@ -9,6 +9,13 @@ class TypeController extends Controller
 {
     public function store(TypeRequest $request)
     {
-        return $request;
+        foreach (array_combine($request['ids'], $request['results']) as $id => $result) {
+            $type = new Type();
+            $type->game_id = $id;
+            $type->result = $result;
+            $type->save();
+        }
+
+        back();
     }
 }

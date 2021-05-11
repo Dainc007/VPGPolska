@@ -19,7 +19,7 @@
                         <div>
                             @foreach($teams as $game)
                             <h6>{{$game->host}} vs {{$game->visitor}}</h6>
-                            <input type="hidden" value="{{$game->id}}" name="results[]">
+                            <input type="hidden" value="{{$game->id}}" name="ids[]">
                             <select id="game" name="results[]" class="block mt-1" required>
                                 <option value="host_win">Wygrana {{$game->host}}</option>
                                 <option value="draw">Remis</option>
