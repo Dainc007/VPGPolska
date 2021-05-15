@@ -23,13 +23,12 @@ Route::get('/request', function () {
     return $_REQUEST;
 })->name('request');
 
+Route::get('/dashboard', [App\Http\Controllers\TypeController::class, 'index'])->name('dashboard');
+
 Route::post('/store', [App\Http\Controllers\TypeController::class, 'store'])->name('type.store');
 
-Route::get('/dashboard', function () {
-    return view('dashboard', [
-        'teams' => Game::all(),
-        'request' => $_GET
-    ]);
-})->middleware(['auth'])->name('dashboard');
+Route::get('/matchday/add', [App\Http\Controllers\GameController::class, 'add'])->name('matchday.add');
+Route::post('/matchday/store', [App\Http\Controllers\GameController::class, 'store'])->name('matchday.store');
+Route::post('/matchday/update', [App\Http\Controllers\GameController::class, 'update'])->name('matchday.update');
 
 require __DIR__ . '/auth.php';

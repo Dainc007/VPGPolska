@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                 
+                    <a href="{{ route('matchday.add') }}">Dodaj kolejkę</a>
                 </div>
             </div>
 
@@ -17,6 +17,9 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <form method="POST" action="{{ route('type.store') }}">
                         <div>
+                        @if($user->types->max('matchday') >= $teams->max('matchday'))
+                        <p>Na tą chwilę nie masz meczów do typowania :(</p>
+                        @else
                             @foreach($teams as $game)
                             <h6>{{$game->host}} vs {{$game->visitor}}</h6>
                             <input type="hidden" value="{{$game->id}}" name="ids[]">
@@ -25,7 +28,6 @@
                                 <option value="draw">Remis</option>
                                 <option value="visitor_win">Wygrana {{$game->visitor}}</option>
                             </select>
-                            
                             @endforeach
 
                             <div class="flex items-center justify-end mt-4">
@@ -33,7 +35,7 @@
                                     Dodaj
                                 </x-button>
                             </div>
-
+                        @endif
                         </div>
                         @method('POST')
                         @csrf

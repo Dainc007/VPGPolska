@@ -21,6 +21,8 @@ class CreateGamesTable extends Migration
             $table->enum('visitor', Game::AVAILABLE_TEAMS);
             $table->enum('result', Game::AVAILABLE_RESULTS)->nullable();
             $table->integer('matchday');
+            $table->dateTime('datetime');
+            $table->timestamps();
         });
     }
 
